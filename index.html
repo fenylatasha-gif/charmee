@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toko Saya</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{background:#f3f6f8;font-family:system-ui,Arial,sans-serif;color:#13262f}
+header{background:#0f3d4c;color:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+header b{font-size:20px}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav button{background:none;border:0;color:#fff;font-size:14px;padding:8px 14px;border-radius:20px;cursor:pointer}
+nav button.a{background:#1f7a8c}
+main{max-width:1100px;margin:0 auto;padding:24px}
+h2{font-size:20px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.card{background:#fff;border:2px solid #dbe4e9;border-radius:10px;overflow:hidden}
+.card.on{border-color:#1f7a8c}
+.ph{height:170px;background:#cfdde3;display:flex;align-items:center;justify-content:center;color:#5d7380;font-size:13px}
+.ph img{width:100%;height:100%;object-fit:cover}
+.in{padding:14px}
+.kode{font-size:12px;color:#5d7380}
+.nama{font-weight:700;font-size:16px;margin:3px 0 6px}
+.desc{font-size:13px;color:#43586a;line-height:1.5;min-height:40px}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:8px}
+.harga{font-weight:700}
+.btn{font-size:13px;padding:9px 14px;border-radius:6px;background:#1f7a8c;color:#fff;border:0;cursor:pointer}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn.ok{background:#e3f3ee;color:#17674f;border:1px solid #17674f}
+.btn.d{background:#fff;color:#b03a30;border:1px solid #b03a30}
+.btn.sm{padding:5px 10px;font-size:12px}
+.box{background:#fff;border:2px solid #dbe4e9;border-radius:10px;padding:20px;max-width:560px}
+label{display:block;font-size:13px;color:#43586a;margin:12px 0 5px}
+input,textarea{width:100%;padding:10px;border:1px solid #9db4bf;border-radius:6px;font:inherit;font-size:14px}
+textarea{min-height:80px}
+#pv{margin-top:10px;max-width:200px;border-radius:8px;display:none}
+.empty{color:#5d7380;padding:30px 0}
+.sum{display:flex;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.s{flex:1;min-width:180px;background:#fff;border:2px solid #dbe4e9;border-radius:10px;padding:16px}
+.s small{color:#5d7380;font-size:13px}.s div{font-size:22px;font-weight:700;margin-top:4px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:#fff;border:2px solid #dbe4e9;font-size:14px}
+th{background:#e8eff2;text-align:left;padding:12px;font-size:13px;color:#43586a}
+td{padding:12px;border-top:1px solid #e5ecef}
+.r{text-align:right}
+.tools{display:flex;gap:8px;margin-bottom:14px}
+.thm{width:30px;height:30px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:8px;background:#cfdde3}
+.cfg{background:#fff3cd;border:1px solid #e0c36a;padding:16px;border-radius:8px;margin:40px auto;max-width:560px;font-size:14px;line-height:1.6}
+</style></head><body>
+
+<div id="cfg" class="cfg" hidden><b>Belum disetel.</b> Buka index.html, isi https://feiclhzsfjqbtssdmplq.supabase.co/rest/v1/ dan eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZlaWNsaHpzZmpxYnRzc2RtcGxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwOTkyMDEsImV4cCI6MjEwODY3NTIwMX0.EfRytJtPOqp4dD8GHFlmwaOofY0iwMA-SBnO_VXyWs0 di bagian atas script, lalu upload ulang.</div>
+
+<div id="app">
+<header><b>Toko Saya</b>
+<nav><button data-v="toko" class="a">Produk</button><button data-v="tambah">Tambah produk</button><button data-v="data">Data penjualan</button></nav></header>
+<main>
+<section id="toko"><h2>Produk</h2><div class="grid" id="grid"></div></section>
+<section id="tambah" hidden><h2>Tambah produk</h2><div class="box">
+<label>Foto produk</label><input type="file" id="foto" accept="image/*"><img id="pv" alt="">
+<label>Kode barang</label><input id="kode" placeholder="BRG-001">
+<label>Nama produk</label><input id="nama" placeholder="Tas Selempang">
+<label>Deskripsi</label><textarea id="desc" placeholder="Bahan, ukuran, kelebihan..."></textarea>
+<label>Harga (Rp)</label><input id="harga" type="number" min="0" placeholder="120000">
+<div class="row" style="margin-top:18px"><button class="btn" id="add">Simpan produk</button><span id="msg" style="font-size:13px"></span></div>
+</div></section>
+<section id="data" hidden><h2>Data penjualan</h2>
+<div class="sum"><div class="s"><small>Total transaksi</small><div id="st">0</div></div><div class="s"><small>Total pendapatan</small><div id="sr">Rp 0</div></div><div class="s"><small>Produk terlaris</small><div id="sb">-</div></div></div>
+<div class="tools"><button class="btn" id="csv">Unduh CSV</button></div>
+<div class="tw"><table><thead><tr><th>Waktu</th><th>Kode</th><th>Produk</th><th class="r">Harga</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+<p class="empty" id="emp" hidden>Belum ada data. Klik tombol Simpan pada produk dulu.</p>
+</section></main></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+// ====== ISI DUA BARIS INI (Supabase -> Project Settings -> API) ======
+const SUPABASE_URL = 'ISI_URL_PROJECT';
+const SUPABASE_KEY = 'ISI_ANON_PUBLIC_KEY';
+// =====================================================================
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rp=n=>'Rp '+Number(n||0).toLocaleString('id-ID');
+const fail=(e,m)=>{console.error(e);alert(m||'Terjadi kesalahan: '+(e&&e.message||e))};
+let sb,foto=null;
+
+function init(){
+  if(SUPABASE_URL.startsWith('ISI_')){$('cfg').hidden=false;$('app').hidden=true;return}
+  sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  show('toko');
+}
+
+
+function show(v){
+  ['toko','tambah','data'].forEach(x=>$(x).hidden=x!==v);
+  document.querySelectorAll('nav [data-v]').forEach(b=>b.classList.toggle('a',b.dataset.v===v));
+  if(v==='toko')renderToko();if(v==='data')renderData();
+}
+document.querySelectorAll('nav [data-v]').forEach(b=>b.onclick=()=>show(b.dataset.v));
+
+async function renderToko(){
+  const g=$('grid');g.innerHTML='<p class="empty">Memuat...</p>';
+  const [p,c]=await Promise.all([
+    sb.from('produk').select('*').order('created_at',{ascending:false}),
+    sb.from('penjualan_per_produk').select('*')]);
+  if(p.error){g.innerHTML='';return fail(p.error)}
+  const cnt={};(c.data||[]).forEach(r=>cnt[r.produk_id]=r.n);
+  if(!p.data.length){g.innerHTML='<p class="empty">Belum ada produk. Buka menu Tambah produk.</p>';return}
+  g.innerHTML=p.data.map(x=>{const n=cnt[x.id]||0;
+    return `<div class="card ${n?'on':''}"><div class="ph">${x.foto_url?`<img src="${esc(x.foto_url)}" alt="${esc(x.nama)}">`:'Tanpa foto'}</div>
+    <div class="in"><div class="kode">Kode: ${esc(x.kode)}</div><div class="nama">${esc(x.nama)}</div><div class="desc">${esc(x.deskripsi)}</div>
+    <div class="row"><div class="harga">${rp(x.harga)}</div><button class="btn ${n?'ok':''}" data-b="${x.id}">${n?'✓ Tersimpan ('+n+')':'Simpan'}</button></div>
+    <div class="row"><button class="btn d sm" data-x="${x.id}">Hapus produk</button></div></div></div>`}).join('');
+  const byId=Object.fromEntries(p.data.map(x=>[x.id,x]));
+  g.querySelectorAll('[data-b]').forEach(b=>b.onclick=async()=>{
+    const x=byId[b.dataset.b];b.disabled=true;
+    const {error}=await sb.from('penjualan').insert({produk_id:x.id,kode:x.kode,nama:x.nama,harga:x.harga,foto_url:x.foto_url});
+    if(error){b.disabled=false;return fail(error)}
+    renderToko();
+  });
+  g.querySelectorAll('[data-x]').forEach(b=>b.onclick=async()=>{
+    if(!confirm('Hapus produk ini? Riwayat penjualannya tetap tersimpan.'))return;
+    const x=byId[b.dataset.x];
+    const {error}=await sb.from('produk').delete().eq('id',x.id);
+    if(error)return fail(error);
+    if(x.foto_path)await sb.storage.from('foto').remove([x.foto_path]);
+    renderToko();
+  });
+}
+
+async function renderData(){
+  const [r,t]=await Promise.all([
+    sb.from('ringkasan_penjualan').select('*').single(),
+    sb.from('penjualan').select('*').order('created_at',{ascending:false}).limit(500)]);
+  if(t.error)return fail(t.error);
+  const s=r.data||{};
+  $('st').textContent=s.total||0;$('sr').textContent=rp(s.pendapatan);$('sb').textContent=s.terlaris||'-';
+  $('emp').hidden=t.data.length>0;
+  $('tb').innerHTML=t.data.map(x=>`<tr><td>${new Date(x.created_at).toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'})}</td><td>${esc(x.kode)}</td><td>${x.foto_url?`<img class="thm" src="${esc(x.foto_url)}" alt="">`:''}${esc(x.nama)}</td><td class="r">${rp(x.harga)}</td><td class="r"><button class="btn d sm" data-u="${x.id}">Batalkan</button></td></tr>`).join('');
+  $('tb').querySelectorAll('[data-u]').forEach(b=>b.onclick=async()=>{
+    if(!confirm('Batalkan catatan penjualan ini?'))return;
+    const {error}=await sb.from('penjualan').delete().eq('id',b.dataset.u);
+    if(error)return fail(error);renderData();
+  });
+}
+
+$('foto').onchange=e=>{
+  const f=e.target.files[0];if(!f){foto=null;return}
+  const r=new FileReader();
+  r.onload=()=>{const im=new Image();im.onload=()=>{
+    const k=Math.min(1,800/Math.max(im.width,im.height));
+    const c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+    c.toBlob(b=>{foto=b;$('pv').src=URL.createObjectURL(b);$('pv').style.display='block'},'image/jpeg',.8);
+  };im.src=r.result};r.readAsDataURL(f);
+};
+
+$('add').onclick=async()=>{
+  const kode=$('kode').value.trim(),nama=$('nama').value.trim();
+  if(!kode||!nama){alert('Kode dan nama produk wajib diisi.');return}
+  $('add').disabled=true;$('msg').style.color='#43586a';$('msg').textContent='Menyimpan...';
+  let foto_url=null,foto_path=null;
+  if(foto){
+    foto_path=Date.now()+'-'+Math.random().toString(36).slice(2,8)+'.jpg';
+    const up=await sb.storage.from('foto').upload(foto_path,foto,{contentType:'image/jpeg'});
+    if(up.error){$('add').disabled=false;$('msg').textContent='';return fail(up.error)}
+    foto_url=sb.storage.from('foto').getPublicUrl(foto_path).data.publicUrl;
+  }
+  const {error}=await sb.from('produk').insert({kode,nama,deskripsi:$('desc').value.trim(),harga:Number($('harga').value)||0,foto_url,foto_path});
+  $('add').disabled=false;
+  if(error){$('msg').textContent='';return fail(error)}
+  ['kode','nama','desc','harga','foto'].forEach(i=>$(i).value='');foto=null;$('pv').style.display='none';
+  $('msg').style.color='#17674f';$('msg').textContent='Produk tersimpan.';setTimeout(()=>$('msg').textContent='',2500);
+};
+
+$('csv').onclick=async()=>{
+  const {data,error}=await sb.from('penjualan').select('*').order('created_at',{ascending:false}).range(0,4999);
+  if(error)return fail(error);
+  const rows=[['Waktu','Kode','Produk','Harga']].concat(data.map(x=>[x.created_at,x.kode,x.nama,x.harga]));
+  const t=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='data-penjualan.csv';a.click();
+};
+init();
+</script></body></html>
