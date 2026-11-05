@@ -10,64 +10,123 @@ header b{font-size:20px}
 nav{display:flex;gap:8px;flex-wrap:wrap}
 nav button{background:none;border:0;color:#fff;font-size:14px;padding:8px 14px;border-radius:20px;cursor:pointer}
 nav button.a{background:#1f7a8c}
+.mode{display:flex;background:#0a2c37;border-radius:20px;padding:3px}
+.mode button{background:none;border:0;color:#b9d3dc;font-size:13px;padding:6px 14px;border-radius:17px;cursor:pointer}
+.mode button.a{background:#fff;color:#0f3d4c;font-weight:700}
 main{max-width:1100px;margin:0 auto;padding:24px}
 h2{font-size:20px;margin-bottom:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
-.card{background:#fff;border:2px solid #dbe4e9;border-radius:10px;overflow:hidden}
+.card{position:relative;background:#fff;border:2px solid #dbe4e9;border-radius:10px;overflow:hidden}
 .card.on{border-color:#1f7a8c}
 .ph{height:170px;background:#cfdde3;display:flex;align-items:center;justify-content:center;color:#5d7380;font-size:13px}
 .ph img{width:100%;height:100%;object-fit:cover}
+.edit{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid #dbe4e9;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.edit svg{width:16px;height:16px;stroke:#1f7a8c;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.edit:hover{background:#e8eff2}
 .in{padding:14px}
 .kode{font-size:12px;color:#5d7380}
 .nama{font-weight:700;font-size:16px;margin:3px 0 6px}
 .desc{font-size:13px;color:#43586a;line-height:1.5;min-height:40px}
 .row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:8px}
 .harga{font-weight:700}
+.stk{font-size:12px;padding:3px 9px;border-radius:10px;background:#e3f3ee;color:#17674f;white-space:nowrap}
+.stk.low{background:#fff3cd;color:#8a6d00}
+.stk.out{background:#fbe4e1;color:#b03a30}
+select.pay{padding:9px 8px;border:1px solid #9db4bf;border-radius:6px;font-size:13px;background:#fff;width:auto}
 .btn{font-size:13px;padding:9px 14px;border-radius:6px;background:#1f7a8c;color:#fff;border:0;cursor:pointer}
-.btn:disabled{opacity:.6;cursor:wait}
+.btn:disabled{opacity:.6;cursor:not-allowed}
 .btn.ok{background:#e3f3ee;color:#17674f;border:1px solid #17674f}
 .btn.d{background:#fff;color:#b03a30;border:1px solid #b03a30}
+.btn.g{background:#fff;color:#43586a;border:1px solid #9db4bf}
 .btn.sm{padding:5px 10px;font-size:12px}
 .box{background:#fff;border:2px solid #dbe4e9;border-radius:10px;padding:20px;max-width:560px}
 label{display:block;font-size:13px;color:#43586a;margin:12px 0 5px}
 input,textarea{width:100%;padding:10px;border:1px solid #9db4bf;border-radius:6px;font:inherit;font-size:14px}
 textarea{min-height:80px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 #pv{margin-top:10px;max-width:200px;border-radius:8px;display:none}
 .empty{color:#5d7380;padding:30px 0}
 .sum{display:flex;gap:14px;margin-bottom:20px;flex-wrap:wrap}
 .s{flex:1;min-width:180px;background:#fff;border:2px solid #dbe4e9;border-radius:10px;padding:16px}
 .s small{color:#5d7380;font-size:13px}.s div{font-size:22px;font-weight:700;margin-top:4px}
+.s.hi{border-color:#17674f}.s.hi div{color:#17674f}
 .tw{overflow-x:auto}
 table{width:100%;border-collapse:collapse;background:#fff;border:2px solid #dbe4e9;font-size:14px}
-th{background:#e8eff2;text-align:left;padding:12px;font-size:13px;color:#43586a}
-td{padding:12px;border-top:1px solid #e5ecef}
+th{background:#e8eff2;text-align:left;padding:12px;font-size:13px;color:#43586a;white-space:nowrap}
+td{padding:12px;border-top:1px solid #e5ecef;vertical-align:middle}
+tfoot td{font-weight:700;background:#f3f6f8}
 .r{text-align:right}
 .tools{display:flex;gap:8px;margin-bottom:14px}
 .thm{width:30px;height:30px;border-radius:5px;object-fit:cover;vertical-align:middle;margin-right:8px;background:#cfdde3}
+.mt{font-size:12px;padding:3px 9px;border-radius:10px;background:#e8eff2;color:#43586a}
+.mt.qris{background:#e6e4fb;color:#e873c5}
+.dd{max-width:260px;color:#43586a;font-size:13px}
+.pos{color:#17674f;font-weight:700}
 .cfg{background:#fff3cd;border:1px solid #e0c36a;padding:16px;border-radius:8px;margin:40px auto;max-width:560px;font-size:14px;line-height:1.6}
+dialog{border:0;border-radius:12px;padding:22px;width:min(440px,92vw);margin:auto}
+dialog::backdrop{background:rgba(15,61,76,.5)}
+dialog h3{margin-bottom:4px}
+.dact{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
 </style></head><body>
 
-<div id="cfg" class="cfg" hidden><b>Belum disetel.</b> Buka index.html, https://feiclhzsfjqbtssdmplq.supabase.co dan eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZlaWNsaHpzZmpxYnRzc2RtcGxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMwOTkyMDEsImV4cCI6MjEwODY3NTIwMX0.EfRytJtPOqp4dD8GHFlmwaOofY0iwMA-SBnO_VXyWs0 di bagian atas script, lalu upload ulang.</div>
+<div id="cfg" class="cfg" hidden><b>Belum disetel.</b> Buka index.html, lalu isi SUPABASE_URL dan SUPABASE_KEY di bagian atas script, lalu upload ulang.</div>
 
 <div id="app">
-<header><b>Toko Saya</b>
-<nav><button data-v="toko" class="a">Produk</button><button data-v="tambah">Tambah produk</button><button data-v="data">Data penjualan</button></nav></header>
+<header><b>Charmee</b>
+<div class="mode"><button data-m="toko" class="a">Toko</button><button data-m="inv">Inventory</button></div>
+<nav id="nav"><button data-v="toko" class="a">Produk</button><button data-v="tambah">Tambah produk</button><button data-v="data">Data penjualan</button></nav></header>
 <main>
 <section id="toko"><h2>Produk</h2><div class="grid" id="grid"></div></section>
+
 <section id="tambah" hidden><h2>Tambah produk</h2><div class="box">
 <label>Foto produk</label><input type="file" id="foto" accept="image/*"><img id="pv" alt="">
 <label>Kode barang</label><input id="kode" placeholder="BRG-001">
 <label>Nama produk</label><input id="nama" placeholder="Tas Selempang">
 <label>Deskripsi</label><textarea id="desc" placeholder="Bahan, ukuran, kelebihan..."></textarea>
-<label>Harga (Rp)</label><input id="harga" type="number" min="0" placeholder="120000">
+<div class="two">
+<div><label>Harga beli (Rp)</label><input id="beli" type="number" min="0" placeholder="80000"></div>
+<div><label>Harga jual (Rp)</label><input id="harga" type="number" min="0" placeholder="120000"></div>
+</div>
+<label>Stok awal</label><input id="stok" type="number" min="0" step="1" placeholder="10">
 <div class="row" style="margin-top:18px"><button class="btn" id="add">Simpan produk</button><span id="msg" style="font-size:13px"></span></div>
 </div></section>
+
 <section id="data" hidden><h2>Data penjualan</h2>
-<div class="sum"><div class="s"><small>Total transaksi</small><div id="st">0</div></div><div class="s"><small>Total pendapatan</small><div id="sr">Rp 0</div></div><div class="s"><small>Produk terlaris</small><div id="sb">-</div></div></div>
+<div class="sum">
+<div class="s"><small>Total transaksi</small><div id="st">0</div></div>
+<div class="s"><small>Total pendapatan</small><div id="sr">Rp 0</div></div>
+<div class="s hi"><small>Total keuntungan</small><div id="su">Rp 0</div></div>
+<div class="s"><small>Produk terlaris</small><div id="sb">-</div></div></div>
 <div class="tools"><button class="btn" id="csv">Unduh CSV</button></div>
-<div class="tw"><table><thead><tr><th>Waktu</th><th>Kode</th><th>Produk</th><th class="r">Harga</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="tw"><table><thead><tr><th>Waktu</th><th>Kode</th><th>Produk</th><th>Bayar</th><th class="r">Harga</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
 <p class="empty" id="emp" hidden>Belum ada data. Klik tombol Simpan pada produk dulu.</p>
-</section></main></div>
+</section>
+
+<section id="inv" hidden><h2>Inventory stok</h2>
+<div class="sum">
+<div class="s"><small>Modal tertahan di stok</small><div id="i1">Rp 0</div></div>
+<div class="s"><small>Potensi untung dari stok</small><div id="i2">Rp 0</div></div>
+<div class="s"><small>Total terjual</small><div id="i3">0</div></div>
+<div class="s hi"><small>Keuntungan terkumpul</small><div id="i4">Rp 0</div></div></div>
+<div class="tw"><table><thead><tr><th>Produk</th><th class="r">Harga beli</th><th class="r">Harga jual</th><th class="r">Stok</th><th class="r">Terjual</th><th class="r">Untung terkumpul</th><th></th></tr></thead>
+<tbody id="itb"></tbody>
+<tfoot id="itf"></tfoot></table></div>
+<p class="empty" id="iemp" hidden>Belum ada produk.</p>
+</section>
+</main></div>
+
+<dialog id="dlg">
+<h3>Edit produk</h3>
+<label>Kode barang</label><input id="e_kode">
+<label>Nama produk</label><input id="e_nama">
+<label>Deskripsi</label><textarea id="e_desc"></textarea>
+<div class="two">
+<div><label>Harga beli (Rp)</label><input id="e_beli" type="number" min="0"></div>
+<div><label>Harga jual (Rp)</label><input id="e_jual" type="number" min="0"></div>
+</div>
+<label>Stok</label><input id="e_stok" type="number" min="0" step="1">
+<div class="dact"><button class="btn g" id="e_batal" type="button">Batal</button><button class="btn" id="e_simpan" type="button">Simpan perubahan</button></div>
+</dialog>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
@@ -80,7 +139,8 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const rp=n=>'Rp '+Number(n||0).toLocaleString('id-ID');
 const fail=(e,m)=>{console.error(e);alert(m||'Terjadi kesalahan: '+(e&&e.message||e))};
-let sb,foto=null;
+const PENCIL='<svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>';
+let sb,foto=null,cur='toko',lastPay='cash',prods={},editId=null;
 
 function init(){
   if(SUPABASE_URL.startsWith('ISI_')){$('cfg').hidden=false;$('app').hidden=true;return}
@@ -88,14 +148,47 @@ function init(){
   show('toko');
 }
 
-
 function show(v){
-  ['toko','tambah','data'].forEach(x=>$(x).hidden=x!==v);
+  cur=v;
+  ['toko','tambah','data','inv'].forEach(x=>$(x).hidden=x!==v);
   document.querySelectorAll('nav [data-v]').forEach(b=>b.classList.toggle('a',b.dataset.v===v));
-  if(v==='toko')renderToko();if(v==='data')renderData();
+  if(v==='toko')renderToko();
+  if(v==='data')renderData();
+  if(v==='inv')renderInv();
+}
+function setMode(m){
+  document.querySelectorAll('.mode [data-m]').forEach(b=>b.classList.toggle('a',b.dataset.m===m));
+  $('nav').hidden=m==='inv';
+  show(m==='inv'?'inv':'toko');
 }
 document.querySelectorAll('nav [data-v]').forEach(b=>b.onclick=()=>show(b.dataset.v));
+document.querySelectorAll('.mode [data-m]').forEach(b=>b.onclick=()=>setMode(b.dataset.m));
 
+/* ---------- Edit produk (dipakai di Produk & Inventory) ---------- */
+function openEdit(id){
+  const x=prods[id];if(!x)return;
+  editId=id;
+  $('e_kode').value=x.kode||'';$('e_nama').value=x.nama||'';$('e_desc').value=x.deskripsi||'';
+  $('e_beli').value=x.harga_beli??0;$('e_jual').value=x.harga??0;$('e_stok').value=x.stok??0;
+  $('dlg').showModal();
+}
+$('e_batal').onclick=()=>$('dlg').close();
+$('e_simpan').onclick=async()=>{
+  const kode=$('e_kode').value.trim(),nama=$('e_nama').value.trim();
+  if(!kode||!nama){alert('Kode dan nama produk wajib diisi.');return}
+  const b=$('e_simpan');b.disabled=true;
+  const {error}=await sb.from('produk').update({
+    kode,nama,deskripsi:$('e_desc').value.trim(),
+    harga_beli:Number($('e_beli').value)||0,
+    harga:Number($('e_jual').value)||0,
+    stok:Math.max(0,Math.floor(Number($('e_stok').value)||0))
+  }).eq('id',editId);
+  b.disabled=false;
+  if(error)return fail(error);
+  $('dlg').close();show(cur);
+};
+
+/* ---------- Halaman Produk ---------- */
 async function renderToko(){
   const g=$('grid');g.innerHTML='<p class="empty">Memuat...</p>';
   const [p,c]=await Promise.all([
@@ -103,22 +196,32 @@ async function renderToko(){
     sb.from('penjualan_per_produk').select('*')]);
   if(p.error){g.innerHTML='';return fail(p.error)}
   const cnt={};(c.data||[]).forEach(r=>cnt[r.produk_id]=r.n);
+  prods=Object.fromEntries(p.data.map(x=>[x.id,x]));
   if(!p.data.length){g.innerHTML='<p class="empty">Belum ada produk. Buka menu Tambah produk.</p>';return}
-  g.innerHTML=p.data.map(x=>{const n=cnt[x.id]||0;
-    return `<div class="card ${n?'on':''}"><div class="ph">${x.foto_url?`<img src="${esc(x.foto_url)}" alt="${esc(x.nama)}">`:'Tanpa foto'}</div>
+  g.innerHTML=p.data.map(x=>{
+    const n=cnt[x.id]||0,st=x.stok||0;
+    const sc=st<=0?'out':st<=3?'low':'';
+    return `<div class="card ${n?'on':''}">
+    <button class="edit" data-e="${x.id}" title="Edit produk" aria-label="Edit produk">${PENCIL}</button>
+    <div class="ph">${x.foto_url?`<img src="${esc(x.foto_url)}" alt="${esc(x.nama)}">`:'Tanpa foto'}</div>
     <div class="in"><div class="kode">Kode: ${esc(x.kode)}</div><div class="nama">${esc(x.nama)}</div><div class="desc">${esc(x.deskripsi)}</div>
-    <div class="row"><div class="harga">${rp(x.harga)}</div><button class="btn ${n?'ok':''}" data-b="${x.id}">${n?'✓ Tersimpan ('+n+')':'Simpan'}</button></div>
+    <div class="row"><div class="harga">${rp(x.harga)}</div><span class="stk ${sc}">${st<=0?'Stok habis':'Stok: '+st}</span></div>
+    <div class="row"><select class="pay" aria-label="Metode bayar"><option value="cash"${lastPay==='cash'?' selected':''}>Cash</option><option value="qris"${lastPay==='qris'?' selected':''}>QRIS</option></select>
+    <button class="btn ${n?'ok':''}" data-b="${x.id}"${st<=0?' disabled':''}>${st<=0?'Habis':n?'✓ Tersimpan ('+n+')':'Simpan'}</button></div>
     <div class="row"><button class="btn d sm" data-x="${x.id}">Hapus produk</button></div></div></div>`}).join('');
-  const byId=Object.fromEntries(p.data.map(x=>[x.id,x]));
+
+  g.querySelectorAll('select.pay').forEach(s=>s.onchange=()=>lastPay=s.value);
+  g.querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>openEdit(b.dataset.e));
   g.querySelectorAll('[data-b]').forEach(b=>b.onclick=async()=>{
-    const x=byId[b.dataset.b];b.disabled=true;
-    const {error}=await sb.from('penjualan').insert({produk_id:x.id,kode:x.kode,nama:x.nama,harga:x.harga,foto_url:x.foto_url});
-    if(error){b.disabled=false;return fail(error)}
+    const metode=b.closest('.card').querySelector('select.pay').value;
+    b.disabled=true;
+    const {error}=await sb.rpc('catat_penjualan',{p_produk_id:String(b.dataset.b),p_metode:metode});
+    if(error){fail(error);return renderToko()}
     renderToko();
   });
   g.querySelectorAll('[data-x]').forEach(b=>b.onclick=async()=>{
     if(!confirm('Hapus produk ini? Riwayat penjualannya tetap tersimpan.'))return;
-    const x=byId[b.dataset.x];
+    const x=prods[b.dataset.x];
     const {error}=await sb.from('produk').delete().eq('id',x.id);
     if(error)return fail(error);
     if(x.foto_path)await sb.storage.from('foto').remove([x.foto_path]);
@@ -126,22 +229,49 @@ async function renderToko(){
   });
 }
 
+/* ---------- Halaman Data penjualan ---------- */
 async function renderData(){
   const [r,t]=await Promise.all([
     sb.from('ringkasan_penjualan').select('*').single(),
     sb.from('penjualan').select('*').order('created_at',{ascending:false}).limit(500)]);
   if(t.error)return fail(t.error);
   const s=r.data||{};
-  $('st').textContent=s.total||0;$('sr').textContent=rp(s.pendapatan);$('sb').textContent=s.terlaris||'-';
+  $('st').textContent=s.total||0;$('sr').textContent=rp(s.pendapatan);$('su').textContent=rp(s.untung);$('sb').textContent=s.terlaris||'-';
   $('emp').hidden=t.data.length>0;
-  $('tb').innerHTML=t.data.map(x=>`<tr><td>${new Date(x.created_at).toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'})}</td><td>${esc(x.kode)}</td><td>${x.foto_url?`<img class="thm" src="${esc(x.foto_url)}" alt="">`:''}${esc(x.nama)}</td><td class="r">${rp(x.harga)}</td><td class="r"><button class="btn d sm" data-u="${x.id}">Batalkan</button></td></tr>`).join('');
+  $('tb').innerHTML=t.data.map(x=>`<tr><td>${new Date(x.created_at).toLocaleString('id-ID',{dateStyle:'medium',timeStyle:'short'})}</td><td>${esc(x.kode)}</td><td>${x.foto_url?`<img class="thm" src="${esc(x.foto_url)}" alt="">`:''}${esc(x.nama)}</td><td><span class="mt ${x.metode_bayar==='qris'?'qris':''}">${x.metode_bayar==='qris'?'QRIS':'Cash'}</span></td><td class="r">${rp(x.harga)}</td><td class="r"><button class="btn d sm" data-u="${x.id}">Batalkan</button></td></tr>`).join('');
   $('tb').querySelectorAll('[data-u]').forEach(b=>b.onclick=async()=>{
-    if(!confirm('Batalkan catatan penjualan ini?'))return;
-    const {error}=await sb.from('penjualan').delete().eq('id',b.dataset.u);
+    if(!confirm('Batalkan catatan penjualan ini? Stok produk akan dikembalikan.'))return;
+    const {error}=await sb.rpc('batalkan_penjualan',{p_id:String(b.dataset.u)});
     if(error)return fail(error);renderData();
   });
 }
 
+/* ---------- Mode Inventory ---------- */
+async function renderInv(){
+  const [p,c]=await Promise.all([
+    sb.from('produk').select('*').order('nama',{ascending:true}),
+    sb.from('penjualan_per_produk').select('*')]);
+  if(p.error)return fail(p.error);
+  const stat={};(c.data||[]).forEach(r=>stat[r.produk_id]={n:r.n,u:Number(r.untung)||0});
+  prods=Object.fromEntries(p.data.map(x=>[x.id,x]));
+  $('iemp').hidden=p.data.length>0;
+  let modal=0,potensi=0,terjual=0,untung=0,stok=0,totalBeli=0;
+  $('itb').innerHTML=p.data.map(x=>{
+    const beli=Number(x.harga_beli)||0,jual=Number(x.harga)||0,st=x.stok||0;
+    const n=(stat[x.id]||{}).n||0,u=(stat[x.id]||{}).u||0;
+    totalBeli+=beli;modal+=beli*st;potensi+=(jual-beli)*st;terjual+=n;untung+=u;stok+=st;
+    const sc=st<=0?'out':st<=3?'low':'';
+    return `<tr><td>${x.foto_url?`<img class="thm" src="${esc(x.foto_url)}" alt="">`:''}<b>${esc(x.nama)}</b><div class="kode">${esc(x.kode)}</div></td>
+    <td class="r">${rp(beli)}</td><td class="r">${rp(jual)}</td>
+    <td class="r"><span class="stk ${sc}">${st}</span></td><td class="r">${n}</td>
+    <td class="r pos">${rp(u)}</td>
+    <td class="r"><button class="edit" style="position:static;display:inline-flex" data-e="${x.id}" title="Edit produk" aria-label="Edit produk">${PENCIL}</button></td></tr>`}).join('');
+  $('itf').innerHTML=p.data.length?`<tr><td>Total</td><td class="r">${rp(totalBeli)}</td><td></td><td class="r">${stok}</td><td class="r">${terjual}</td><td class="r pos">${rp(untung)}</td><td></td></tr>`:'';
+  $('i1').textContent=rp(modal);$('i2').textContent=rp(potensi);$('i3').textContent=terjual;$('i4').textContent=rp(untung);
+  $('itb').querySelectorAll('[data-e]').forEach(b=>b.onclick=()=>openEdit(b.dataset.e));
+}
+
+/* ---------- Tambah produk ---------- */
 $('foto').onchange=e=>{
   const f=e.target.files[0];if(!f){foto=null;return}
   const r=new FileReader();
@@ -164,17 +294,23 @@ $('add').onclick=async()=>{
     if(up.error){$('add').disabled=false;$('msg').textContent='';return fail(up.error)}
     foto_url=sb.storage.from('foto').getPublicUrl(foto_path).data.publicUrl;
   }
-  const {error}=await sb.from('produk').insert({kode,nama,deskripsi:$('desc').value.trim(),harga:Number($('harga').value)||0,foto_url,foto_path});
+  const {error}=await sb.from('produk').insert({
+    kode,nama,deskripsi:$('desc').value.trim(),
+    harga_beli:Number($('beli').value)||0,
+    harga:Number($('harga').value)||0,
+    stok:Math.max(0,Math.floor(Number($('stok').value)||0)),
+    foto_url,foto_path});
   $('add').disabled=false;
   if(error){$('msg').textContent='';return fail(error)}
-  ['kode','nama','desc','harga','foto'].forEach(i=>$(i).value='');foto=null;$('pv').style.display='none';
+  ['kode','nama','desc','beli','harga','stok','foto'].forEach(i=>$(i).value='');foto=null;$('pv').style.display='none';
   $('msg').style.color='#17674f';$('msg').textContent='Produk tersimpan.';setTimeout(()=>$('msg').textContent='',2500);
 };
 
+/* ---------- CSV ---------- */
 $('csv').onclick=async()=>{
   const {data,error}=await sb.from('penjualan').select('*').order('created_at',{ascending:false}).range(0,4999);
   if(error)return fail(error);
-  const rows=[['Waktu','Kode','Produk','Harga']].concat(data.map(x=>[x.created_at,x.kode,x.nama,x.harga]));
+  const rows=[['Waktu','Kode','Produk','Bayar','Harga jual','Harga beli','Untung']].concat(data.map(x=>[x.created_at,x.kode,x.nama,x.metode_bayar,x.harga,x.harga_beli,(Number(x.harga)||0)-(Number(x.harga_beli)||0)]));
   const t=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='data-penjualan.csv';a.click();
 };
