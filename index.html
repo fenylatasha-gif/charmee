@@ -259,7 +259,7 @@ async function renderInv(){
   $('itb').innerHTML=p.data.map(x=>{
     const beli=Number(x.harga_beli)||0,jual=Number(x.harga)||0,st=x.stok||0;
     const n=(stat[x.id]||{}).n||0,u=(stat[x.id]||{}).u||0;
-    totalBeli+=beli;modal+=beli*st;potensi+=(jual-beli)*st;terjual+=n;untung+=u;stok+=st;
+    totalBeli+=beli*st;modal+=beli*st;potensi+=(jual-beli)*st;terjual+=n;untung+=u;stok+=st;
     const sc=st<=0?'out':st<=3?'low':'';
     return `<tr><td>${x.foto_url?`<img class="thm" src="${esc(x.foto_url)}" alt="">`:''}<b>${esc(x.nama)}</b><div class="kode">${esc(x.kode)}</div></td>
     <td class="r">${rp(beli)}</td><td class="r">${rp(jual)}</td>
